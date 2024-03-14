@@ -1,0 +1,8 @@
+{
+  "language": {
+    "zh": "chinese(simple)",
+    "en": "en"
+  },
+  "createWallet": "Create wallet",
+  "importWallet": "Import wallet"
+}
