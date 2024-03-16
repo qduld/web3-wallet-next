@@ -9,6 +9,7 @@ import { title } from "@/components/primitives";
 import { IParams } from "@/locale/locale";
 import useSettingStore from "@/store/useSettingStore";
 import CreateWalletDialog from "@/components/dialog/CreateWalletDialog";
+import MnemonicPhrase from "@/components/MnemonicPhrase";
 import { useDialog } from "@/hooks/useDialog";
 
 export default function Home({ params: { locale } }: IParams) {
@@ -19,7 +20,7 @@ export default function Home({ params: { locale } }: IParams) {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-sky-100">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
+      <div className="z-10 max-w-5xl w-full flex-col items-center justify-between font-mono text-sm lg:flex">
         <AppBar />
         <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 lg:w-screen">
           <div className="justify-center inline-block max-w-lg text-center">
@@ -48,6 +49,7 @@ export default function Home({ params: { locale } }: IParams) {
             </Link>
           </div>
         </section>
+        <MnemonicPhrase />
       </div>
     </main>
   );

@@ -4,10 +4,9 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useSettingStore from "@/store/useSettingStore";
-import { t } from "i18next";
+import useUserStore from "@/store/useUserStore";
 
 interface ICreateWalletDialogProps {
   open: boolean;
@@ -16,6 +15,7 @@ interface ICreateWalletDialogProps {
 
 export default function CreateWalletDialog(props: ICreateWalletDialogProps) {
   const { dictionary } = useSettingStore();
+  const { setPwd, generateMnemonicPhrase } = useUserStore();
   const { open, handleClose } = props;
 
   return (
@@ -31,7 +31,8 @@ export default function CreateWalletDialog(props: ICreateWalletDialogProps) {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries((formData as any).entries());
-            const email = formJson.email;
+            setPwd(formJson.password);
+            generateMnemonicPhrase();
             handleClose();
           },
         }}
