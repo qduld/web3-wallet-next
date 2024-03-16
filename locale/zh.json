@@ -1,4 +1,12 @@
 {
+  "common": {
+    "ok": "确认",
+    "cancel": "取消"
+  },
+  "login": {
+    "pwd": "密码",
+    "plsInputPwd": "请输入密码"
+  },
   "language": {
     "zh": "中文",
     "en": "英文"

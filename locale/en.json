@@ -1,4 +1,12 @@
 {
+  "common": {
+    "ok": "Confirm",
+    "cancel": "Cancel"
+  },
+  "login": {
+    "pwd": "password",
+    "plsInputPwd": "Please enter a password"
+  },
   "language": {
     "zh": "chinese(simple)",
     "en": "en"

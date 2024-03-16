@@ -8,9 +8,12 @@ import AppBar from "@/components/common/AppBar";
 import { title } from "@/components/primitives";
 import { IParams } from "@/locale/locale";
 import useSettingStore from "@/store/useSettingStore";
+import CreateWalletDialog from "@/components/dialog/CreateWalletDialog";
+import { useDialog } from "@/hooks/useDialog";
 
 export default function Home({ params: { locale } }: IParams) {
   const { dictionary } = useSettingStore();
+  const { isDialogVisible, openDialog, closeDialog } = useDialog();
 
   const githubHref = "https://github.com/qduld";
 
@@ -28,9 +31,17 @@ export default function Home({ params: { locale } }: IParams) {
 
           <div className="flex gap-3">
             <Link href="#" underline="hover">
-              <Button variant="contained" className="bg-sky-700">
+              <Button
+                variant="contained"
+                className="bg-sky-700"
+                onClick={openDialog}
+              >
                 {dictionary.createWallet}
               </Button>
+              <CreateWalletDialog
+                open={isDialogVisible}
+                handleClose={closeDialog}
+              ></CreateWalletDialog>
             </Link>
             <Link href={githubHref}>
               <Button variant="outlined">{dictionary.importWallet}</Button>

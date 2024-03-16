@@ -1,3 +1,4 @@
+import { TLocale } from "@/types";
 import en from "./en.json";
 import zh from "./zh.json";
 
@@ -12,7 +13,7 @@ export interface IParams {
 export const dictionaries = {
   en,
   zh,
-} as Record<TLanguage, Record<string, any>>;
+} as Record<TLanguage, TLocale>;
 
 export const fallbackLng = "en";
 export const languages = [fallbackLng, "zh"] as TLanguage[];
