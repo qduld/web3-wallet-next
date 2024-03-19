@@ -11,12 +11,12 @@ import { GithubIcon } from "@/components/icons";
 export default function AppAppBar() {
   return (
     <React.Fragment>
-      <MuiAppBar elevation={0} position="fixed">
+      <MuiAppBar elevation={0} position="relative">
         <Toolbar sx={{ justifyContent: "space-between" }}>
           <Box sx={{ flex: 1 }}>
             <Image src={logo} height={50} width={50} alt={"DL wallet"} />
           </Box>
-          <Box sx={{ flex: 1, textAlign: "center" }} className={title()}>
+          <Box sx={{ flex: "auto", textAlign: "center" }} className={title()}>
             DL Wallet
           </Box>
           <Box
@@ -32,7 +32,6 @@ export default function AppAppBar() {
           </Box>
         </Toolbar>
       </MuiAppBar>
-      <Toolbar />
     </React.Fragment>
   );
 }

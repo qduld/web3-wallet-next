@@ -1,7 +1,9 @@
 {
   "common": {
     "ok": "Confirm",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "next": "Next",
+    "back": "Back"
   },
   "login": {
     "pwd": "password",
