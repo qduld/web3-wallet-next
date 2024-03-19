@@ -13,9 +13,11 @@ interface SettingState {
   locales: TLanguage[];
   locale: TLanguage;
   dictionary: TLocale;
+  activeStep: number;
   setDefaultLocale: (newVal: TLanguage) => void;
   setDictionary: (newVal: TLanguage) => void;
   setLocale: (newVal: TLanguage) => void;
+  setActiveStep: (newVal: number) => void;
 }
 
 const useSettingStore = create<SettingState>()(
@@ -24,6 +26,7 @@ const useSettingStore = create<SettingState>()(
       defaultLocale: get()?.defaultLocale ? get()?.defaultLocale : fallbackLng,
       locales: languages,
       locale: get()?.defaultLocale ? get()?.defaultLocale : fallbackLng,
+      activeStep: 0,
       dictionary: get()?.defaultLocale
         ? dictionaries[get()?.defaultLocale]
         : dictionaries[fallbackLng],
@@ -38,6 +41,10 @@ const useSettingStore = create<SettingState>()(
       setDictionary: (newVal: TLanguage) =>
         set((state) => ({
           dictionary: (state.dictionary = dictionaries[newVal]),
+        })),
+      setActiveStep: (newVal) =>
+        set((state) => ({
+          activeStep: (state.activeStep = newVal),
         })),
     }),
     {

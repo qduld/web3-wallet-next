@@ -7,6 +7,8 @@ import LangSwitch from "./LangSwitch";
 import logo from "@/source/logo.png";
 import { title } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
+import { githubHref } from "@/model/const";
+import Link from "@mui/material/Link";
 
 export default function AppAppBar() {
   return (
@@ -28,7 +30,9 @@ export default function AppAppBar() {
             }}
           >
             <LangSwitch />
-            <GithubIcon size={20} className="cursor-pointer"></GithubIcon>
+            <Link href={githubHref} className="text-white">
+              <GithubIcon size={20} className="cursor-pointer" />
+            </Link>
           </Box>
         </Toolbar>
       </MuiAppBar>

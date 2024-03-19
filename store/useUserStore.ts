@@ -10,31 +10,23 @@ interface IUserState {
   generateMnemonicPhrase: () => void;
 }
 
-const useUserStore = create<IUserState>()(
-  persist(
-    (set, get) => ({
-      pwd: "",
-      mnemonicPhrase: [],
-      setPwd: (newVal) =>
-        set((state) => ({
-          pwd: (state.pwd = newVal),
-        })),
-      setMnemonicPhrase: (newVal: string[]) =>
-        set((state) => ({
-          mnemonicPhrase: (state.mnemonicPhrase = newVal),
-        })),
-      generateMnemonicPhrase: () =>
-        set((state) => ({
-          mnemonicPhrase: (state.mnemonicPhrase = bip39
-            .generateMnemonic()
-            .split(" ")),
-        })),
-    }),
-    {
-      name: "setting",
-      storage: createJSONStorage(() => sessionStorage), // default localstorage
-    }
-  )
-);
+const useUserStore = create<IUserState>()((set) => ({
+  pwd: "",
+  mnemonicPhrase: [],
+  setPwd: (newVal) =>
+    set((state) => ({
+      pwd: (state.pwd = newVal),
+    })),
+  setMnemonicPhrase: (newVal: string[]) =>
+    set((state) => ({
+      mnemonicPhrase: (state.mnemonicPhrase = newVal),
+    })),
+  generateMnemonicPhrase: () =>
+    set((state) => ({
+      mnemonicPhrase: (state.mnemonicPhrase = bip39
+        .generateMnemonic()
+        .split(" ")),
+    })),
+}));
 
 export default useUserStore;

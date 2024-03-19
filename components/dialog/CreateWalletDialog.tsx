@@ -14,7 +14,7 @@ interface ICreateWalletDialogProps {
 }
 
 export default function CreateWalletDialog(props: ICreateWalletDialogProps) {
-  const { dictionary } = useSettingStore();
+  const { dictionary, setActiveStep } = useSettingStore();
   const { setPwd, generateMnemonicPhrase } = useUserStore();
   const { open, handleClose } = props;
 
@@ -33,6 +33,7 @@ export default function CreateWalletDialog(props: ICreateWalletDialogProps) {
             const formJson = Object.fromEntries((formData as any).entries());
             setPwd(formJson.password);
             generateMnemonicPhrase();
+            setActiveStep(1);
             handleClose();
           },
         }}

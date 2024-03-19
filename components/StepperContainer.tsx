@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
@@ -10,7 +11,7 @@ import useSettingStore from "@/store/useSettingStore";
 import WalletOptions from "./WalletOptions";
 import MnemonicPhrase from "./MnemonicPhrase";
 import ConfirmMnemonic from "./ConfirmMnemonic";
-import { Container } from "@mui/material";
+import useUserStore from "@/store/useUserStore";
 
 enum EComponentNameList {
   WalletOptions = "WalletOptions",
@@ -36,17 +37,32 @@ const renderComponentsList = (component: EComponentNameList) => {
 };
 
 export default function TextMobileStepper() {
+  const { pwd } = useUserStore();
+  const { dictionary, activeStep, setActiveStep } = useSettingStore();
   const theme = useTheme();
-  const { dictionary } = useSettingStore();
-  const [activeStep, setActiveStep] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!pwd) setActiveStep(0);
+  }, []);
+
   const maxSteps = componentsList.length;
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep(activeStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep(activeStep - 1);
+  };
+
+  const checkedStepDisabled = (currentStep: number): boolean => {
+    if (currentStep === maxSteps - 1) return true;
+    if (
+      componentsList[currentStep] === EComponentNameList.WalletOptions &&
+      !pwd
+    )
+      return true;
+    return false;
   };
 
   return (
@@ -60,9 +76,10 @@ export default function TextMobileStepper() {
         justifyContent: "center",
       }}
     >
-      <Container
+      <Box
         sx={{ minHeight: "36rem" }}
-        className="max-w-md md:border-stone-100 md:border-2 md:border-solid md:rounded-xl flex p-2 flex-col justify-between sm:border-none"
+        className="md:border-stone-100 md:border-2 md:border-solid md:rounded-xl sm:border-none
+        max-w-xl flex p-2 flex-col justify-between"
       >
         <Paper
           square
@@ -85,7 +102,7 @@ export default function TextMobileStepper() {
             <Button
               size="small"
               onClick={handleNext}
-              disabled={activeStep === maxSteps - 1}
+              disabled={checkedStepDisabled(activeStep)}
             >
               {dictionary.common.next}
               {theme.direction === "rtl" ? (
@@ -110,7 +127,7 @@ export default function TextMobileStepper() {
             </Button>
           }
         />
-      </Container>
+      </Box>
     </Box>
   );
 }
