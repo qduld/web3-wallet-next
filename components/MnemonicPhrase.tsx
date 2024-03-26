@@ -9,9 +9,11 @@ import { title } from "@/components/primitives";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import useUserStore from "@/store/useUserStore";
 import Container from "@mui/material/Container";
+import useSettingStore from "@/store/useSettingStore";
 
 export default function MnemonicPhrase() {
   const { mnemonicPhrase } = useUserStore();
+  const { dictionary } = useSettingStore();
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -24,7 +26,7 @@ export default function MnemonicPhrase() {
   return mnemonicPhrase ? (
     <Container className="flex flex-col items-center justify-center gap-4">
       <Box component="section">
-        <h1 className={title({ size: "sm" })}>助记词</h1>
+        <h1 className={title({ size: "sm" })}>{dictionary.mnemonic}</h1>
       </Box>
       <Grid
         container
@@ -40,6 +42,9 @@ export default function MnemonicPhrase() {
           </Grid>
         ))}
       </Grid>
+      <Box component="section">
+        <h5>{dictionary.mnemonicSaveTips}</h5>
+      </Box>
     </Container>
   ) : (
     ""

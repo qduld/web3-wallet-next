@@ -14,5 +14,9 @@
     "en": "英文"
   },
   "createWallet": "创建钱包",
-  "importWallet": "导入钱包"
+  "importWallet": "导入钱包",
+  "mnemonic": "助记词",
+  "mnemonicSaveTips": "请妥善保管助记词，不要依赖电子设备，最好用纸笔记下",
+  "confirmMnemonicTips": "请按顺序确认助记词",
+  "mnemonicErrorTips": "助记词不正确，请重新选择"
 }

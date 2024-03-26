@@ -11,8 +11,14 @@ import { TLanguage, fallbackLng } from "@/locale/locale";
 import useSettingStore from "@/store/useSettingStore";
 
 export default function LangSwitch() {
-  const { setDefaultLocale, setLocale, locale, locales, setDictionary } =
-    useSettingStore();
+  const {
+    setDefaultLocale,
+    setLocale,
+    locale,
+    locales,
+    dictionary,
+    setDictionary,
+  } = useSettingStore();
 
   const [languageCookie, setLanguageCookie] = useCookies([languageCookieName]);
 
@@ -62,7 +68,7 @@ export default function LangSwitch() {
             onClick={() => handleClose(language as TLanguage)}
             key={language}
           >
-            {language}
+            {dictionary.language[language]}
           </MenuItem>
         ))}
       </Menu>

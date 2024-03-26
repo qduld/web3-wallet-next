@@ -14,5 +14,9 @@
     "en": "en"
   },
   "createWallet": "Create wallet",
-  "importWallet": "Import wallet"
+  "importWallet": "Import wallet",
+  "mnemonic": "Mnemonic",
+  "mnemonicSaveTips": "Keep your mnemonics safe, don't rely on electronic devices, and preferably take notes on paper!",
+  "confirmMnemonicTips": "Please check the mnemonic words in order",
+  "mnemonicErrorTips": "The mnemonic is incorrect, please re-select"
 }
